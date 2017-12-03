@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :guides
+  resources :categories
   resources :portfolios
   get 'pages/home'
 
