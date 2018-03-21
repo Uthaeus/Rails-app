@@ -5,17 +5,16 @@
 <hr>
 
 
-  
 
 <div>
   <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-    <div class = "content">
+    <div>
 <% attributes.reject(&:password_digest?).each do |attribute| -%>
       <p><%%= <%= singular_table_name %>.<%= attribute.name %> %></p>
 <% end -%>
       <p><%%= link_to 'Show', <%= singular_table_name %> %></p>
       <p><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></p>
-        <p><%%= link_to 'Delete', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      <p><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></p>
     </div>
   <%% end %>
 </div>
@@ -23,4 +22,4 @@
 
 <br>
 
-<%%= link_to 'Create a New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path %>
+<%%= link_to 'New <%= singular_table_name.titleize %>', new_<%= singular_table_name %>_path %>
