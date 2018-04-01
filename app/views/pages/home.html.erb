@@ -1,12 +1,65 @@
 
-<div>
-  <h1>Homepage</h1>
+<div class="row">
+  <div class="col-md-7">
+    <div class="title">
+      <h1>Welcome</h1>
+    </div>
+
+  </div>
+  <div class="col-md-5">
+    <div class="head">
+      <h2>Quote Machine</h1>
+      <h3>Expand Your Mind</h3>
+    </div>
+    <div class="quote-container">
+      <div class="quote-display">
+        <div class="quote">
+          <p class="quote-out"></p>
+        </div>
+        <div class="author">
+          <p class="author-out"></p>
+        </div>
+      </div>
+      <div class="buttons">
+        <a class="tweet button" target="_blank"><i class="fab fa-twitter"></i> Tweet</a>
+        
+        <div class="new-quote">
+          <button class="quote-btn">New Quote</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
 </div>
-<div>
-  <h1>Blog Posts</h1>
-  <%= @posts.inspect %>
-</div>
-<div>
-  <h1>Skills</h1>
-  <%= @skills.inspect %>
-</div>
+<script>
+  const endpoint = 'https://talaikis.com/api/quotes/random/';
+
+  function getQuote() {
+    fetch(endpoint)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        displayQuote(data.quote, data.author);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  }
+
+  function displayQuote(quote, author) {
+    const quoteText = document.querySelector('.quote-out');
+    const authorText = document.querySelector('.author-out');
+    const tweet = document.querySelector('.tweet');
+
+    quoteText.textContent = quote;
+    authorText.textContent = author;
+
+    tweet.setAttribute('href', `https://twitter.com/share?text=${quote} - ${author}`);
+  }
+
+  const quoteButton = document.querySelector('.quote-btn');
+  quoteButton.addEventListener('click', getQuote);
+
+  $(document).ready(getQuote);
+</script>
