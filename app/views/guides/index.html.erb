@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Guides</h1>
+
+<hr>
+
+
+  
+
+<div>
+  <% @guides.each do |guide| %>
+    <div class = "content">
+      <p><%= guide.title %></p>
+      <p><%= link_to 'Show', guide %></p>
+      <p><%= link_to 'Edit', edit_guide_path(guide) %></p>
+        <p><%= link_to 'Delete', guide, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    </div>
+  <% end %>
+</div>
+
+
+<br>
+
+<%= link_to 'Create a New Guide', new_guide_path %>
